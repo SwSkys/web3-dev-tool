@@ -13,7 +13,8 @@
     "PHP": "^7.0|^8.0",
     "kornrunner/keccak": "^1.0",
     "simplito/elliptic-php": "^1.0",
-    "guzzlehttp/guzzle": "^6.0|^7.0"
+    "guzzlehttp/guzzle": "^6.0|^7.0",
+    "fenguoz/tron-php": "^1.3"
   },
   "require-dev": {
     "symfony/var-dumper": "^5.4"
