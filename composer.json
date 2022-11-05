@@ -1,0 +1,21 @@
+{
+  "name": "joker/web3-dev-tool",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Joker",
+      "email": "ali@ulovi.net"
+    }
+  ],
+  "require": {
+    "PHP": "^7.0|^8.0",
+    "kornrunner/keccak": "^1.0",
+    "simplito/elliptic-php": "^1.0",
+    "guzzlehttp/guzzle": "^6.0|^7.0"
+  },
+  "require-dev": {
+    "symfony/var-dumper": "^5.4"
+  }
+}
