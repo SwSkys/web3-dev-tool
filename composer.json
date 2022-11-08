@@ -1,33 +1,32 @@
 {
-  "name": "joker-wang/web3-dev-tool",
-  "description": "description",
-  "license": "MIT",
-  "type": "library",
-  "homepage": "https://github.com/SwSkys/web3-dev-tool",
-  "authors": [
-    {
-      "name": "Joker",
-      "email": "ali@ulovi.net"
-    }
-  ],
-  "keywords": [
-        "Web3",
-        "Web3.php",
-        "trx",
-        "trc20"
-    ],
-  "autoload": {
-      "psr-4": {
-          "Web3Tool\\": "src/"
-      }
-  },
-  "require": {
-    "PHP": "^7.0|^8.0",
-    "kornrunner/keccak": "^1.0",
-    "simplito/elliptic-php": "^1.0",
-    "guzzlehttp/guzzle": "^6.0|^7.0"
-  },
-  "require-dev": {
-    "symfony/var-dumper": "^5.4"
-  }
+	"name": "joker-wang/web3-dev-tool",
+	"description": "description",
+	"license": "MIT",
+	"type": "library",
+	"homepage": "https://github.com/SwSkys/web3-dev-tool",
+	"authors": [{
+		"name": "Joker",
+		"email": "ali@ulovi.net"
+	}],
+	"keywords": [
+		"Web3",
+		"Web3.php",
+		"trx",
+		"trc20"
+	],
+	"autoload": {
+		"psr-4": {
+			"Web3Tool\\": "src/"
+		}
+	},
+	"require": {
+		"PHP": "^7.0|^8.0",
+		"kornrunner/keccak": "^1.0",
+		"simplito/elliptic-php": "^1.0",
+		"guzzlehttp/guzzle": "^6.0|^7.0",
+		"fenguoz/tron-php": "^1.3"
+	},
+	"require-dev": {
+		"symfony/var-dumper": "^5.4"
+	}
 }
