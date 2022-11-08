@@ -1,14 +1,26 @@
 {
   "name": "joker-wang/web3-dev-tool",
   "description": "description",
-  "minimum-stability": "stable",
-  "license": "proprietary",
+  "license": "MIT",
+  "type": "library",
+  "homepage": "https://github.com/SwSkys/web3-dev-tool",
   "authors": [
     {
       "name": "Joker",
       "email": "ali@ulovi.net"
     }
   ],
+  "keywords": [
+        "Web3",
+        "Web3.php",
+        "trx",
+        "trc20"
+    ],
+  "autoload": {
+      "psr-4": {
+          "Web3Tool\\": "src/"
+      }
+  },
   "require": {
     "PHP": "^7.0|^8.0",
     "kornrunner/keccak": "^1.0",
