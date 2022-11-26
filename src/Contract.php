@@ -144,7 +144,7 @@ class Contract
         }
         $data = [
             'to' => $this->address,
-            'value' => '0x0'
+            'value' => '0x0000000000000000000000000000000000000000'
         ];
         if (!empty($from)) {
             $data['from'] = $from;
@@ -153,11 +153,24 @@ class Contract
         $hashSub = mb_substr($hash, 0, 8, 'utf-8');
         $data['data'] = '0x' . $hashSub;
         $input = $function['inputs'];
+
         for ($i = 0; $i < count($param); $i++) {
             $value = '';
             switch ($input[$i]['type']) {
                 case 'address':
                     $value = Utils::remove0x($param[$i]);
+                    break;
+                case 'address[]':
+                    $maxLenght = '64';
+                    $maxLenght = Utils::fill0(Utils::decToHex($maxLenght, false));
+                    $lenght = count($param[$i]);
+                    $lenght = Utils::fill0(Utils::decToHex($lenght, false));
+                    $value .= $maxLenght;
+                    $value .= $lenght;
+                    foreach ($param[$i] as $address){
+                        $value .= Utils::fill0(Utils::remove0x($address));
+                    };
+
                     break;
                 case 'uint8':
                 case 'uint16':
@@ -194,7 +207,12 @@ class Contract
                     $value = Utils::decToHex($param[$i], false);
                     break;
             }
-            $data['data'] = $data['data'] . Utils::fill0($value);
+            if ($input[$i]['type'] == 'address[]'){
+                $data['data'] = $data['data'] . $value;
+            }else{
+                $data['data'] = $data['data'] . Utils::fill0($value);
+            }
+
         }
         return $data;
     }
@@ -217,6 +235,7 @@ class Contract
     public function call($function, $param = [], $quantity = Quantity::latest)
     {
         $data = $this->getData($function, $param);
+        var_dump($data['data']);
         return $this->web3->call($data['to'], $data['data'], null, null, null, null, $quantity);
     }
 
