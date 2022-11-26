@@ -717,4 +717,21 @@ class Utils
         return '0x' . static::checksumEncode($address);
     }
 
+    public static function parseAddressArrDataInfo($info)
+    {
+        $info = self::remove0x($info);
+        if (strlen($info) % 64 !== 0){
+            return [];
+        }
+        $arr = str_split($info,64);
+        if (count($arr) < 2){
+            return [];
+        }
+        $arr = array_splice($arr,2);
+        foreach ($arr as $k=>$hash){
+            $arr[$k] = self::hexToDec($hash);
+        }
+        return $arr;
+    }
+
 }
