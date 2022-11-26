@@ -75,9 +75,10 @@ class FastETH
     {
         // 获取Swap 兑换的价格
         $contract = Contract::at($web3,self::ROUTE_ABI,$route);
-        $amout ='1000000000000000000';
+        $amout =1*(10**18);
         $res = $contract->call('getAmountsOut',[$amout,[$contracts,$outContract]]);
-        return $res;
+        $res = Utils::parseAddressArrDataInfo($res);
+        return $res[1];
     }
 
     /**
