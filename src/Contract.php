@@ -235,7 +235,6 @@ class Contract
     public function call($function, $param = [], $quantity = Quantity::latest)
     {
         $data = $this->getData($function, $param);
-        var_dump($data['data']);
         return $this->web3->call($data['to'], $data['data'], null, null, null, null, $quantity);
     }
 
