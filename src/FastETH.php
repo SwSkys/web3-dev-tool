@@ -71,12 +71,21 @@ class FastETH
         return new Web3($node);
     }
 
+    public static function getDecimals(Web3 $web3,$contracts)
+    {
+        $contract = Contract::at($web3,self::ERC20_ABI,$contracts);
+
+        return Utils::hexToDec($contract->call('decimals'));
+    }
+
     public static function getSwapPrice($web3,$route,$contracts,$outContract)
     {
         // 获取Swap 兑换的价格
         $contract = Contract::at($web3,self::ROUTE_ABI,$route);
-        $amout =1*(10**18);
+        
+        $amout =1*(10**self::getDecimals($web3,$contracts));
         $res = $contract->call('getAmountsOut',[$amout,[$contracts,$outContract]]);
+
         $res = Utils::parseAddressArrDataInfo($res);
         return $res[1];
     }
@@ -258,12 +267,5 @@ class FastETH
 
 
     }
-
-
-
-
-
-
-
 
 }
