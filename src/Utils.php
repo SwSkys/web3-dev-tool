@@ -735,13 +735,13 @@ class Utils
         return $arr;
     }
 
-    function personal_ecRecover($msg, $signed) {
+    public static function personal_ecRecover($msg, $signed) {
         $personal_prefix_msg = "\x19Ethereum Signed Message:\n". strlen($msg). $msg;
         $hex = Utils::keccak256($personal_prefix_msg);
         return Utils::ecRecover($hex, $signed);
     }
 
-    function ecRecover($hex, $signed) {
+    public static function ecRecover($hex, $signed) {
         $rHex   = substr($signed, 2, 64);
         $sHex   = substr($signed, 66, 64);
         $vValue = hexdec(substr($signed, 130, 2));
@@ -773,13 +773,13 @@ class Utils
         return '0x'. substr(Utils::keccak256(hex2bin($publicKeyString)), -40);
     }
 
-    function strToHex($string)
+    public static function strToHex($string)
     {
         $hex = unpack('H*', $string);
         return '0x' . array_shift($hex);
     }
 
-    function keccak256($str) {
+    public static function keccak256($str) {
         return '0x'. Keccak::hash($str, 256);
     }
 
