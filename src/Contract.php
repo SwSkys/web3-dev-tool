@@ -144,7 +144,7 @@ class Contract
         }
         $data = [
             'to' => $this->address,
-            'value' => '0x0000000000000000000000000000000000000000'
+            'value' => ''
         ];
         if (!empty($from)) {
             $data['from'] = $from;
@@ -171,6 +171,18 @@ class Contract
                         $value .= Utils::fill0(Utils::remove0x($address));
                     };
 
+                    break;
+                case "string":
+                    //dd();
+                    $value = Utils::toHex($param[$i]);
+                    $bn = Utils::toBn((mb_strlen($value) / 2));
+                    $bnHex = $bn->toHex(true);
+                    $prefix = Utils::fill0($bnHex);
+                    $wei = Utils::fill0(Utils::remove0x(Utils::decToHex(64)));
+                    $l = floor((mb_strlen($value) + 63) / 64);
+                    $padding = (($l * 64 - mb_strlen($value) + 1) >= 0) ? $l * 64 - mb_strlen($value) : 0;
+                    $value = $padding > 0 ? $value.implode('', array_fill(0, $padding, '0')) : $value;
+                    $value = $wei . $prefix . $value;
                     break;
                 case 'uint8':
                 case 'uint16':
