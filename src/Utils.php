@@ -783,4 +783,20 @@ class Utils
         return '0x'. Keccak::hash($str, 256);
     }
 
+    public static function parseInput(string $hash): array
+    {
+        if (empty($hash)) return [];
+        if (strlen($hash) == 138){
+            $funcName = substr($hash,0,10);
+            $address = '0x'.strtolower(substr($hash,34,40));
+            $amount = substr($hash,74);
+            return [
+                'funcName'=>$funcName,
+                'address'=>Utils::toChecksumAddress($address),
+                'amount'=>Utils::hexToDec($amount),
+            ];
+        }
+        return [];
+    }
+
 }
