@@ -1,5 +1,5 @@
 {
-		"name": "joker-wang/web3-dev-tool",
+	"name": "joker-wang/web3-dev-tool",
 	"description": "description",
 	"license": "MIT",
 	"type": "library",
@@ -21,10 +21,10 @@
 	},
 	"require": {
 		"PHP": "^7.0|^8.0",
+		"guzzlehttp/guzzle": "^6.0|^7.0",
 		"kornrunner/keccak": "^1.0",
 		"simplito/elliptic-php": "^1.0",
-		"guzzlehttp/guzzle": "^6.0|^7.0",
-		"fenguoz/tron-php": "^1.3"
+		"ikr/money-math": "0.1.*"
 	},
 	"require-dev": {
 		"symfony/var-dumper": "^5.4"
